@@ -12,6 +12,7 @@ import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.solver.variables.VariableFactory;
 import org.chocosolver.solver.search.strategy.IntStrategyFactory;
 import org.chocosolver.solver.Solver;
+import org.chocosolver.util.ESat;
 import java.util.Random;
 
 /**
@@ -22,6 +23,7 @@ public class QueensCompletion extends AbstractProblem {
     
     int n = 10; //taille du tableau -> ex : n=8, tableau 8*8
     int k = 9; //nb reines déjà placées
+    int sol[] = new int[n]; //contient la pré-solution
     IntVar[] vars;
      // A compléter
     public void configureSearch()
@@ -37,39 +39,63 @@ public class QueensCompletion extends AbstractProblem {
 
     public void solve()
     {
-        solver.findAllSolutions();
-        //solver.findSolution();
+        //solver.findAllSolutions();
+        solver.findSolution();
     }
 
-    public void buildModel()
-    {
-        //VariableFactory.bounded("X", 0, 5, solver);  -> x compris entre 0 et 5            
-        
-        //Important : les permutations
-        
-       
-        vars = new IntVar[n];
-        //permet de donner un nom au variable
-        for (int i = 0; i < vars.length; i++)
-        {
-            //vars[i] = VariableFactory.enumerated("Q_" + i, 1, n, solver);
-            //IntVar x = VariableFactory.fixed(1, solver);   //permet de fixer une valeur pour une variable
-        }
-        for (int i = 0; i < n-1; i++)
-        {
-            for (int j = i+1; j < n; j++)
-            {
-                int z = j - i;
-                solver.post(IntConstraintFactory.arithm(vars[i], "!=", vars[j], "+", -k));
-                solver.post(IntConstraintFactory.arithm(vars[i], "!=", vars[j], "+", k));
+   
+    public void buildModel() {
+            // Création du tableau contenant les références des variables du
+            // problème.
+            vars = new IntVar[n];
+            // Création des variables ayant toutes pour domaine 1..n.
+            for (int i = 0; i < vars.length; i++) {
+                    if (sol[i] == 0) {
+                            vars[i] = VariableFactory.enumerated("Q_" + i, 1, n, solver);
+                    } else {
+                            vars[i] = VariableFactory.fixed("Q_" + i, sol[i], solver);
+                    }
             }
-        }
-
-        
+            
+            /*for (int i = 0; i < vars.length; i++)
+            {
+                vars[i] = VariableFactory.enumerated("Q_" + i, 1, n, solver);
+            }*/
+                    
+            // Ajout d’une contrainte imposant que les variables aient toutes des
+            // valeurs différentes.
+            solver.post(IntConstraintFactory.alldifferent(vars, "AC"));
+            // Technique de filtrage utilisée (Arc Consistency).
+            for (int i = 0; i < n - 1; i++) {
+                    for (int j = i + 1; j < n; j++) {
+                            int k = j - i;
+                            // Ajout des contraintes imposant qu’une paire de reine ne doit
+                            // pas se trouver sur une même diagonale.
+                            solver.post(IntConstraintFactory.arithm(vars[i], "!=", vars[j], "+", -k));
+                            solver.post(IntConstraintFactory.arithm(vars[i], "!=", vars[j], "+", k));
+                    }
+            }
     }
     
     public void prettyOut()
     {
+        if (solver.isFeasible().equals(ESat.TRUE)) {
+            System.out.println("Une solution :");
+                for(int i = 0; i<vars.length; i++){
+                    //System.out.println("Q_"+i+" -> "+solver.getSolutionRecorder().getLastSolution().getIntVal(vars[i]));
+                    for (int j = 0; j < vars.length; j++) {
+                        if(j == solver.getSolutionRecorder().getLastSolution().getIntVal(vars[i])-1){
+                            System.out.print("|1");
+                        }else{
+                            System.out.print("|0");
+                        }
+                    }
+                    System.out.print("|\n");
+                } 
+        } else {
+                System.out.println("Aucune solution");
+        }
+        
     }
      
     //fonction a utiliser en premier
@@ -77,6 +103,7 @@ public class QueensCompletion extends AbstractProblem {
     public void generate()
     {
         int reinePlacer = 0;
+        int grille[][] = new int[n][n];
         while(reinePlacer!=k){
             //initialise la grille
             int grid[][] = new int[n][n] ;
@@ -209,18 +236,36 @@ public class QueensCompletion extends AbstractProblem {
                         s += grid[i][j]+"|";
                     }
                     System.out.println(s);
+                    grille = grid;
                 }
             else
                 reinePlacer = 0;
             
         }
-    }
+            
+        for(int i = 0; i<n;i++){
+            for(int j=0; j<n; j++){
+                if(grille[i][j] == 1){
+                    sol[i] = j+1;
+                    System.out.println("Q_"+i+" -> "+sol[i]);
+                }
+            }
+        }
         
+        
+  
+        
+        
+    }
+    
+    
+   
     public static void main(String[] args)
     {
         //new QueensCompletion().execute(args);
         QueensCompletion qc = new QueensCompletion();
-        qc.generate();
+        qc.generate();   
+        qc.execute();
     }
 
 }
