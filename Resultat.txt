@@ -1,0 +1,101 @@
+Test n°0 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°1 /N = 10 / K = 9 : Solution trouvée
+Test n°2 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°3 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°4 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°5 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°6 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°7 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°8 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°9 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°10 /N = 10 / K = 9 : Solution trouvée
+Test n°11 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°12 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°13 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°14 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°15 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°16 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°17 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°18 /N = 10 / K = 9 : Solution trouvée
+Test n°19 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°20 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°21 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°22 /N = 10 / K = 9 : Solution trouvée
+Test n°23 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°24 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°25 /N = 10 / K = 9 : Solution trouvée
+Test n°26 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°27 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°28 /N = 10 / K = 9 : Solution trouvée
+Test n°29 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°30 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°31 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°32 /N = 10 / K = 9 : Solution trouvée
+Test n°33 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°34 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°35 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°36 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°37 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°38 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°39 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°40 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°41 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°42 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°43 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°44 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°45 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°46 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°47 /N = 10 / K = 9 : Solution trouvée
+Test n°48 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°49 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°50 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°51 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°52 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°53 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°54 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°55 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°56 /N = 10 / K = 9 : Solution trouvée
+Test n°57 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°58 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°59 /N = 10 / K = 9 : Solution trouvée
+Test n°60 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°61 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°62 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°63 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°64 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°65 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°66 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°67 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°68 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°69 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°70 /N = 10 / K = 9 : Solution trouvée
+Test n°71 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°72 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°73 /N = 10 / K = 9 : Solution trouvée
+Test n°74 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°75 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°76 /N = 10 / K = 9 : Solution trouvée
+Test n°77 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°78 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°79 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°80 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°81 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°82 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°83 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°84 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°85 /N = 10 / K = 9 : Solution trouvée
+Test n°86 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°87 /N = 10 / K = 9 : Solution trouvée
+Test n°88 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°89 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°90 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°91 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°92 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°93 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°94 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°95 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°96 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°97 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°98 /N = 10 / K = 9 : Pas de solution trouvé
+Test n°99 /N = 10 / K = 9 : Solution trouvée
+Nombre de solutions trouvées = 16

@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.chocosolver.samples.AbstractProblem;
@@ -14,6 +17,7 @@ import org.chocosolver.solver.search.strategy.IntStrategyFactory;
 import org.chocosolver.solver.Solver;
 import org.chocosolver.util.ESat;
 import java.util.Random;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,10 +25,17 @@ import java.util.Random;
  */
 public class QueensCompletion extends AbstractProblem {
     
-    int n = 10; //taille du tableau -> ex : n=8, tableau 8*8
-    int k = 9; //nb reines déjà placées
-    int sol[] = new int[n]; //contient la pré-solution
+    int n; //taille du tableau -> ex : n=8, tableau 8*8
+    int k; //nb reines déjà placées
+    int sol[]; //contient la pré-solution
     IntVar[] vars;
+    
+    QueensCompletion(int N,int K){
+        n = N;
+        k = K;
+        sol = new int[N];
+    }
+    
      // A compléter
     public void configureSearch()
     {
@@ -96,6 +107,24 @@ public class QueensCompletion extends AbstractProblem {
                 System.out.println("Aucune solution");
         }
         
+    }
+    
+    public int trouver(){
+        if (solver.isFeasible().equals(ESat.TRUE))
+            return 1;
+        else
+            return 0;
+    }
+    
+    public String res(int i){
+        String res = "Test n°"+i+" /N = "+n+" / K = "+k+" : ";
+        
+        if (solver.isFeasible().equals(ESat.TRUE))
+            res +=  "Solution trouvée";
+        else
+            res += "Pas de solution trouvé";
+        
+        return res+"\n";
     }
      
     //fonction a utiliser en premier
@@ -262,10 +291,27 @@ public class QueensCompletion extends AbstractProblem {
    
     public static void main(String[] args)
     {
+        File f = new File("Resultat.txt");
+        try {
+            FileWriter fw = new FileWriter(f);
+            int nbTrouver = 0;
+            
+            for(int i=0;i<100;i++){
+                QueensCompletion qc = new QueensCompletion(10,9);
+                qc.generate();   
+                qc.execute();
+                fw.append(qc.res(i));
+                nbTrouver += qc.trouver();
+            }
+            
+            fw.append("Nombre de solutions trouvées = "+nbTrouver);
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(QueensCompletion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
         //new QueensCompletion().execute(args);
-        QueensCompletion qc = new QueensCompletion();
-        qc.generate();   
-        qc.execute();
+        
     }
 
 }
