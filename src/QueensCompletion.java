@@ -281,30 +281,31 @@ public class QueensCompletion extends AbstractProblem {
             }
         }
         
-        
-  
-        
-        
     }
-    
-    
    
     public static void main(String[] args)
     {
-        File f = new File("Resultat.txt");
         try {
-            FileWriter fw = new FileWriter(f);
-            int nbTrouver = 0;
+            FileWriter fw = new FileWriter("Resultat.txt",true);
             
-            for(int i=0;i<100;i++){
-                QueensCompletion qc = new QueensCompletion(10,9);
+            int nbTrouver = 0;
+            int nbInstances = 100;
+            boolean detail = false;
+            int n = 10;
+            int k = 9;
+            
+            for(int i=0;i<nbInstances;i++){
+                QueensCompletion qc = new QueensCompletion(n,k);
                 qc.generate();   
                 qc.execute();
-                fw.append(qc.res(i));
+                
+                if(detail)
+                    fw.append(qc.res(i));
+                
                 nbTrouver += qc.trouver();
             }
             
-            fw.append("Nombre de solutions trouvées = "+nbTrouver);
+            fw.append("Nombre de solutions trouvées pour N = "+n+" et K = "+k+" : "+nbTrouver+" / "+nbInstances + "\n");
             fw.close();
         } catch (IOException ex) {
             Logger.getLogger(QueensCompletion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
