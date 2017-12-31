@@ -136,7 +136,7 @@ public class QueensCompletion extends AbstractProblem {
         boolean generated = true;
         
         long startTime = System.currentTimeMillis(); //fetch starting time
-        long maxTime = 5000;
+        long maxTime = 2000;
         
         while(reinePlacer!=k && (System.currentTimeMillis()-startTime)< maxTime){
             //initialise la grille
@@ -302,7 +302,7 @@ public class QueensCompletion extends AbstractProblem {
                 for(int k=1;k<n;k++){
                     int nbTrouver = 0;
                     int nbFail = 0;
-                    int nbInstances = 50;
+                    int nbInstances = 30;
                     boolean detail = false;
 
                     for(int i=0;i<nbInstances;i++){
@@ -310,7 +310,7 @@ public class QueensCompletion extends AbstractProblem {
                         if(qc.generate()){
                             qc.execute();
                             if(detail)
-                            fw.append(qc.res(i));
+                                fw.append(qc.res(i));
 
                             nbTrouver += qc.trouver();
                         }else{
