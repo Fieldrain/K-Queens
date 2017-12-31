@@ -129,11 +129,16 @@ public class QueensCompletion extends AbstractProblem {
      
     //fonction a utiliser en premier
     //elle va generer le tableau et placer les K queens en respectant les contraintes
-    public void generate()
+    public boolean generate()
     {
         int reinePlacer = 0;
         int grille[][] = new int[n][n];
-        while(reinePlacer!=k){
+        boolean generated = true;
+        
+        long startTime = System.currentTimeMillis(); //fetch starting time
+        long maxTime = 5000;
+        
+        while(reinePlacer!=k && (System.currentTimeMillis()-startTime)< maxTime){
             //initialise la grille
             int grid[][] = new int[n][n] ;
             for (int i = 0; i < n; i++) {
@@ -271,6 +276,10 @@ public class QueensCompletion extends AbstractProblem {
                 reinePlacer = 0;
             
         }
+        
+        if((System.currentTimeMillis()-startTime)>= maxTime){
+            generated = false;
+        }
             
         for(int i = 0; i<n;i++){
             for(int j=0; j<n; j++){
@@ -280,32 +289,45 @@ public class QueensCompletion extends AbstractProblem {
                 }
             }
         }
-        
+        return generated;
     }
    
     public static void main(String[] args)
     {
         try {
             FileWriter fw = new FileWriter("Resultat.txt",true);
+            FileWriter fwCsv = new FileWriter("Resultat.csv",true);
             
-            int nbTrouver = 0;
-            int nbInstances = 100;
-            boolean detail = false;
-            int n = 10;
-            int k = 9;
-            
-            for(int i=0;i<nbInstances;i++){
-                QueensCompletion qc = new QueensCompletion(n,k);
-                qc.generate();   
-                qc.execute();
-                
-                if(detail)
-                    fw.append(qc.res(i));
-                
-                nbTrouver += qc.trouver();
+            for(int n = 10;n<101;n++){
+                for(int k=1;k<n;k++){
+                    int nbTrouver = 0;
+                    int nbFail = 0;
+                    int nbInstances = 50;
+                    boolean detail = false;
+
+                    for(int i=0;i<nbInstances;i++){
+                        QueensCompletion qc = new QueensCompletion(n,k);
+                        if(qc.generate()){
+                            qc.execute();
+                            if(detail)
+                            fw.append(qc.res(i));
+
+                            nbTrouver += qc.trouver();
+                        }else{
+                            nbFail++;
+                            fw.append("Generation fail pour N = "+n+" et K = "+k+"\n");
+                        }   
+
+                    }
+
+                    fw.append("Nombre de solutions trouvées pour N = "+n+" et K = "+k+" : "+nbTrouver+" / "+nbInstances + "\n");
+                    fwCsv.append(n+","+k+","+nbTrouver+","+nbFail+";");
+                }
+                fwCsv.flush();
+                fw.flush();
             }
-            
-            fw.append("Nombre de solutions trouvées pour N = "+n+" et K = "+k+" : "+nbTrouver+" / "+nbInstances + "\n");
+
+            fwCsv.close();
             fw.close();
         } catch (IOException ex) {
             Logger.getLogger(QueensCompletion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

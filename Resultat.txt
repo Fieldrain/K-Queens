@@ -1,7 +1,0 @@
-Nombre de solutions trouvées pour N = 10 et K = 9 : 13 / 100
-Nombre de solutions trouvées pour N = 10 et K = 3 : 78 / 100
-Nombre de solutions trouvées pour N = 10 et K = 8 : 5 / 100
-Nombre de solutions trouvées pour N = 10 et K = 8 : 3 / 100
-Nombre de solutions trouvées pour N = 10 et K = 8 : 5 / 100
-Nombre de solutions trouvées pour N = 10 et K = 9 : 9 / 100
-Nombre de solutions trouvées pour N = 10 et K = 9 : 12 / 100
