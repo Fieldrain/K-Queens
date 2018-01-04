@@ -136,7 +136,7 @@ public class QueensCompletion extends AbstractProblem {
         boolean generated = true;
         
         long startTime = System.currentTimeMillis(); //fetch starting time
-        long maxTime = 2000;
+        long maxTime = 10000;
         
         while(reinePlacer!=k && (System.currentTimeMillis()-startTime)< maxTime){
             //initialise la grille
@@ -295,11 +295,11 @@ public class QueensCompletion extends AbstractProblem {
     public static void main(String[] args)
     {
         try {
-            FileWriter fw = new FileWriter("Resultat.txt",true);
-            FileWriter fwCsv = new FileWriter("Resultat.csv",true);
+            FileWriter fw = new FileWriter("Resultat2.txt",true);
+            FileWriter fwCsv = new FileWriter("Resultat2.csv",true);
             
-            for(int n = 10;n<101;n++){
-                for(int k=1;k<n;k++){
+            for(int n = 20;n<21;n++){
+                for(int k=18;k<n;k++){
                     int nbTrouver = 0;
                     int nbFail = 0;
                     int nbInstances = 30;

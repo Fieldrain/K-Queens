@@ -1,0 +1,9 @@
+Nombre de solutions trouvées pour N = 20 et K = 18 : 1 / 30
+Generation fail pour N = 20 et K = 19
+Generation fail pour N = 20 et K = 19
+Generation fail pour N = 20 et K = 19
+Generation fail pour N = 20 et K = 19
+Generation fail pour N = 20 et K = 19
+Generation fail pour N = 20 et K = 19
+Generation fail pour N = 20 et K = 19
+Nombre de solutions trouvées pour N = 20 et K = 19 : 0 / 30
