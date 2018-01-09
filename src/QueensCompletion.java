@@ -25,11 +25,16 @@ import java.util.logging.Logger;
  */
 public class QueensCompletion extends AbstractProblem {
     
-    int n; //taille du tableau -> ex : n=8, tableau 8*8
-    int k; //nb reines déjà placées
+    int n; //taille de l'echiquier -> ex : n=8, tableau 8*8
+    int k; //nb reines à placer
     int sol[]; //contient la pré-solution
     IntVar[] vars;
     
+    /**
+     * Constructeur de la classe
+     * @param N taille de l'echiquier
+     * @param K nombres de reines à placer
+     */
     QueensCompletion(int N,int K){
         n = N;
         k = K;
@@ -42,19 +47,26 @@ public class QueensCompletion extends AbstractProblem {
 
     }
 
-
+    /**
+     * Creation du Solver
+     */
     public void createSolver()
     {
         solver = new Solver("Queens Completion");
     }
 
+    /**
+     * Permet de soit trouver une solution, soit de trouver toutes les solutions
+     */
     public void solve()
     {
         //solver.findAllSolutions();
         solver.findSolution();
     }
 
-   
+   /**
+    * Solveur -> Ajout contraintes
+    */
     public void buildModel() {
             // Création du tableau contenant les références des variables du
             // problème.
@@ -67,33 +79,28 @@ public class QueensCompletion extends AbstractProblem {
                             vars[i] = VariableFactory.fixed("Q_" + i, sol[i], solver);
                     }
             }
-            
-            /*for (int i = 0; i < vars.length; i++)
-            {
-                vars[i] = VariableFactory.enumerated("Q_" + i, 1, n, solver);
-            }*/
                     
-            // Ajout d’une contrainte imposant que les variables aient toutes des
-            // valeurs différentes.
+            // Contrainte imposant que les variables aient toutes des valeurs différentes.
             solver.post(IntConstraintFactory.alldifferent(vars, "AC"));
             // Technique de filtrage utilisée (Arc Consistency).
             for (int i = 0; i < n - 1; i++) {
                     for (int j = i + 1; j < n; j++) {
                             int k = j - i;
-                            // Ajout des contraintes imposant qu’une paire de reine ne doit
-                            // pas se trouver sur une même diagonale.
+                            // Contraintes imposant qu’une paire de reine ne doit pas se trouver sur une même diagonale.
                             solver.post(IntConstraintFactory.arithm(vars[i], "!=", vars[j], "+", -k));
                             solver.post(IntConstraintFactory.arithm(vars[i], "!=", vars[j], "+", k));
                     }
             }
     }
     
+    /**
+     * Fonction d'affichage
+     */
     public void prettyOut()
     {
         if (solver.isFeasible().equals(ESat.TRUE)) {
             System.out.println("Une solution :");
                 for(int i = 0; i<vars.length; i++){
-                    //System.out.println("Q_"+i+" -> "+solver.getSolutionRecorder().getLastSolution().getIntVal(vars[i]));
                     for (int j = 0; j < vars.length; j++) {
                         if(j == solver.getSolutionRecorder().getLastSolution().getIntVal(vars[i])-1){
                             System.out.print("|1");
@@ -127,10 +134,13 @@ public class QueensCompletion extends AbstractProblem {
         return res+"\n";
     }
      
-    //fonction a utiliser en premier
-    //elle va generer le tableau et placer les K queens en respectant les contraintes
+        
+    /**
+     * Genere le tableau et placer les K reines en respectant les contraintes
+     */
     public boolean generate()
     {
+        //initialisation des variables
         int reinePlacer = 0;
         int grille[][] = new int[n][n];
         boolean generated = true;
@@ -158,8 +168,9 @@ public class QueensCompletion extends AbstractProblem {
 
             //crée une grille avec k queens placées sur des lignes differentes et colonnes differentes
             Random randomGenerator = new Random();
-            System.out.println("Generation");
+            //System.out.println("Generation");
             boolean impossible = false;
+            //pour chaque reine a placer
             for (int i = 0; i < k; i++) {
                 boolean notok = true;
                 int ligneCourante = -1;
@@ -169,20 +180,20 @@ public class QueensCompletion extends AbstractProblem {
                 while(notok){
                     int rdm;
                     int rdm2;
-                    // tire au sort
+                    // tire au sort colonne et ligne parmi les lignes et colonnes non utilisées
                     if(colonneCourante == -1){
                         int rdmTL = randomGenerator.nextInt(rdmLine.size());
                         rdm = (int) rdmLine.get(rdmTL);
 
                         int rdmTC = randomGenerator.nextInt(rdmColumn.size());
                         rdm2 = (int) rdmColumn.get(rdmTC);
-                    // on decale    
+                    // on decale d'une case vers la droite (permutation)   
                     }else{
                         rdm = ligneCourante;
                         rdm2 = (colonneCourante+1) % n;
                         nbDeplacement++;
                     }
-                    // si on fait plus de n deplacement on a tester toute case de la ligne
+                    // si on fait plus de n deplacement on a testé toutes les cases de la ligne
                     if(nbDeplacement<n && rdmColumn.contains(rdm2)){
                         grid[rdm][rdm2] = 1; 
                         boolean diagBD = true; //Bas droite
@@ -236,7 +247,7 @@ public class QueensCompletion extends AbstractProblem {
 
                             compteur++;
                         }
-
+                        //si il n'y a aucun conflit, on ajoute la reine et on retire les indexes de ligne et colonne des tableaux rdmLine et rdmColumn
                         if(!probleme){
                             notok = false;
                             rdmLine.remove(rdmLine.indexOf(rdm));
@@ -292,6 +303,11 @@ public class QueensCompletion extends AbstractProblem {
         return generated;
     }
    
+    
+    /**
+     * Permet de gérer les différentes instances de génération + exportes les fichiers en CSV
+     * @param args 
+     */
     public static void main(String[] args)
     {
         try {
@@ -332,9 +348,7 @@ public class QueensCompletion extends AbstractProblem {
         } catch (IOException ex) {
             Logger.getLogger(QueensCompletion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-        //new QueensCompletion().execute(args);
-        
+                
     }
 
 }
